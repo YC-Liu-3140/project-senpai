@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Senpai｜出租學長（安全型職涯顧問）</title>
+  <meta name="description" content="以安全、理性、可落地的方式，提供職涯、學術、工程與AI工具指導。校園起步，逐步走向校園外落地。" />
+
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --card:#12141b;
+      --muted:#a7b0c0;
+      --text:#e9eefc;
+      --line:#262b38;
+      --accent:#7aa2ff;
+      --accent2:#9ef0d2;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans CJK TC", "Microsoft JhengHei", "PingFang TC", "Heiti TC", sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(122,162,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(158,240,210,.12), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1040px; margin:0 auto; padding:28px 18px 60px}
+
+    header{
+      position:sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(11,12,16,.68);
+      border-bottom:1px solid rgba(38,43,56,.7);
+      z-index:10;
+    }
+    .nav{
+      max-width:1040px; margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800}
+    .dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg, var(--accent), var(--accent2))}
+    .navlinks{display:flex; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:14px}
+    .navlinks a{padding:8px 10px; border-radius:10px}
+    .navlinks a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+
+    .rightTools{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+    .langWrap{display:flex; gap:8px; align-items:center}
+    .langBtn{
+      padding:9px 10px; border-radius:12px;
+      border:1px solid rgba(38,43,56,.95);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:700;
+      font-size:13px;
+    }
+    .langBtn.active{
+      background:linear-gradient(135deg, rgba(122,162,255,.95), rgba(158,240,210,.85));
+      color:#0b0c10;
+      border-color:transparent;
+    }
+    .ctaBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:12px;
+      background:linear-gradient(135deg, rgba(122,162,255,.95), rgba(158,240,210,.85));
+      color:#0b0c10; font-weight:900; border:0;
+      cursor:pointer;
+    }
+    .ctaBtn:hover{filter:brightness(1.03)}
+
+    .hero{padding:34px 0 18px; display:grid; grid-template-columns: 1.2fr .8fr; gap:18px}
+    @media (max-width: 920px){ .hero{grid-template-columns:1fr; } }
+
+    .card{
+      background: rgba(18,20,27,.72);
+      border:1px solid rgba(38,43,56,.85);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      border-radius:18px;
+      padding:18px;
+    }
+    h1{margin:0 0 10px; font-size:40px; line-height:1.12}
+    @media (max-width: 520px){ h1{font-size:32px} }
+    .sub{color:var(--muted); margin:0 0 14px; font-size:16px}
+    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 0}
+    .pill{
+      border:1px solid rgba(38,43,56,.9);
+      color:var(--muted);
+      padding:8px 10px; border-radius:999px;
+      background:rgba(255,255,255,.04);
+      font-size:13px;
+    }
+    section{padding:18px 0}
+    .sectionTitle{font-size:20px; margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+    @media (max-width: 920px){ .grid3{grid-template-columns:1fr} }
+
+    .twoCol{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width: 920px){ .twoCol{grid-template-columns:1fr} }
+
+    .kTitle{font-weight:850; margin:2px 0 6px}
+    .kText{color:var(--muted); font-size:14px; margin:0}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .list li{margin:6px 0}
+
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px; border-radius:12px;
+      border:1px solid rgba(38,43,56,.9);
+      background:rgba(255,255,255,.04);
+      color:var(--muted); font-size:13px;
+    }
+    .badge b{color:var(--text)}
+    .formGrid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width: 680px){ .formGrid{grid-template-columns:1fr} }
+    label{display:block; font-size:13px; color:var(--muted); margin:2px 0 6px}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid rgba(38,43,56,.95);
+      background:rgba(10,12,16,.55);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:110px; resize:vertical}
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(122,162,255,.9);
+      box-shadow:0 0 0 3px rgba(122,162,255,.15)
+    }
+    .rowEnd{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:12px}
+    .tiny{font-size:12px; color:var(--muted)}
+    .outlineBtn{
+      padding:10px 14px; border-radius:12px;
+      background:transparent;
+      border:1px solid rgba(38,43,56,.95);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:700;
+    }
+    .outlineBtn:hover{background:rgba(255,255,255,.06)}
+
+    footer{margin-top:18px; padding-top:18px; border-top:1px solid rgba(38,43,56,.7); color:var(--muted); font-size:13px}
+    .toast{
+      position:fixed; right:18px; bottom:18px;
+      background:rgba(18,20,27,.92);
+      border:1px solid rgba(38,43,56,.9);
+      padding:12px 14px; border-radius:14px;
+      max-width:360px;
+      display:none;
+    }
+    .toast.show{display:block}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="dot"></div>
+        <div data-i18n="brand">Project Senpai <span class="muted" style="font-weight:600;">| 安全型指導</span></div>
+      </div>
+
+      <nav class="navlinks" aria-label="primary">
+        <a href="#what" data-i18n="nav_what">是什麼</a>
+        <a href="#offer" data-i18n="nav_offer">能提供什麼</a>
+        <a href="#how" data-i18n="nav_how">怎麼運作</a>
+        <a href="#safety" data-i18n="nav_safety">安全邊界</a>
+        <a href="#contact" data-i18n="nav_contact">開始</a>
+      </nav>
+
+      <div class="rightTools">
+        <div class="langWrap" aria-label="language switch">
+          <button class="langBtn" id="btnZh" type="button">中文</button>
+          <button class="langBtn" id="btnEn" type="button">EN</button>
+        </div>
+        <button class="ctaBtn" type="button" onclick="scrollToId('contact')" data-i18n="nav_start_btn">開始</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card">
+        <h1 data-i18n="hero_title">從校園出發，走向真實世界——<br/>一位安全、理性的「學長顧問」。</h1>
+        <p class="sub" data-i18n="hero_sub">
+          職涯方向、學術拆解、工程落地與 AI 工具使用——用清楚的邊界與可執行的策略，陪你把路走順。
+        </p>
+
+        <div class="pillRow">
+          <div class="pill" data-i18n="pill_1">職涯發展</div>
+          <div class="pill" data-i18n="pill_2">學術研究教練</div>
+          <div class="pill" data-i18n="pill_3">工程落地視角</div>
+          <div class="pill" data-i18n="pill_4">AI 工具加速</div>
+          <div class="pill" data-i18n="pill_5">學術↔業界翻譯</div>
+        </div>
+
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="ctaBtn" type="button" onclick="scrollToId('contact')" data-i18n="hero_cta">留下 Email</button>
+          <button class="outlineBtn" type="button" onclick="scrollToId('offer')" data-i18n="hero_more">看看能提供什麼</button>
+        </div>
+
+        <p class="tiny" style="margin-top:12px;" data-i18n="hero_note">
+          MVP 試水溫：零囤貨、零管銷壓力。有案就處理，沒案也不影響生活節奏。
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="badge"><b data-i18n="pos_label">定位</b><span data-i18n="pos_text">：安全型導師，不做曖昧服務。</span></div>
+        <div style="height:10px"></div>
+        <div class="badge"><b data-i18n="style_label">風格</b><span data-i18n="style_text">：條理、務實、尊重。</span></div>
+        <div style="height:10px"></div>
+        <div class="badge"><b data-i18n="focus_label">聚焦</b><span data-i18n="focus_text">：職涯與成長（小市場→高信任）。</span></div>
+
+        <div style="height:14px"></div>
+        <div class="muted" style="font-size:14px;" data-i18n="hero_right_reason">
+          <b style="color:var(--text);">為什麼有效：</b>開放式對話能讓每次諮詢都不一樣；而清楚邊界，確保安全與專業。
+        </div>
+
+        <div style="height:14px"></div>
+        <div class="card" style="padding:14px; background:rgba(255,255,255,.03); border-radius:14px;">
+          <div class="kTitle" data-i18n="quick_links">快速連結（之後再補）</div>
+          <p class="kText" data-i18n="quick_links_desc">LINE / Telegram / Email / Google Meet 預約連結</p>
+          <ul class="list">
+            <li><span class="muted" data-i18n="ql_booking">預約：</span> <span>YOUR_LINK_HERE</span></li>
+            <li><span class="muted" data-i18n="ql_contact">聯絡：</span> <span>YOUR_EMAIL_HERE</span></li>
+            <li><span class="muted" data-i18n="ql_social">社群：</span> <span>@YOUR_HANDLE</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT -->
+    <section id="what">
+      <h2 class="sectionTitle" data-i18n="what_title">這是什麼</h2>
+      <div class="twoCol">
+        <div class="card">
+          <div class="kTitle" data-i18n="what_card1_title">真實世界的指導服務</div>
+          <p class="kText" data-i18n="what_card1_text">
+            先從校園開始累積信任與案例，再逐步走到校園外；用可複用的方法論與紀錄，做長線影響力。
+          </p>
+          <ul class="list">
+            <li data-i18n="what_li1">低成本、低風險、高學習</li>
+            <li data-i18n="what_li2">用小勝利與回饋累積威望值</li>
+            <li data-i18n="what_li3">把經驗變成可複製的框架</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="kTitle" data-i18n="what_card2_title">不是取代專業人士</div>
+          <p class="kText" data-i18n="what_card2_text">
+            本服務以經驗分享、教育引導、策略拆解為主。若涉及醫療/心理/法律等高風險議題，請尋求專業資源。
+          </p>
+          <ul class="list">
+            <li data-i18n="what_li4">不做診斷或治療</li>
+            <li data-i18n="what_li5">不做法律意見</li>
+            <li data-i18n="what_li6">不做戀愛/性暗示服務</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFER -->
+    <section id="offer">
+      <h2 class="sectionTitle" data-i18n="offer_title">我能提供什麼（我們有哪些料）</h2>
+
+      <div class="grid3">
+        <div class="card">
+          <div class="kTitle" data-i18n="offer1_title">1) 學術型</div>
+          <p class="kText" data-i18n="offer1_text">AI 學術拆解、論文選題、研究價值判斷，特別適合碩士生。</p>
+        </div>
+        <div class="card">
+          <div class="kTitle" data-i18n="offer2_title">2) 工程型</div>
+          <p class="kText" data-i18n="offer2_text">業界實戰視角：產品落地、MP 思維、現場排查與交付。</p>
+        </div>
+        <div class="card">
+          <div class="kTitle" data-i18n="offer3_title">3) 橋梁型</div>
+          <p class="kText" data-i18n="offer3_text">整合學術腦與工程腦：把兩種語言互相翻譯，降低溝通成本。</p>
+        </div>
+        <div class="card">
+          <div class="kTitle" data-i18n="offer4_title">4) 顧問型</div>
+          <p class="kText" data-i18n="offer4_text">職涯與工作發展：靠經驗累積的判斷，幫你少走彎路。</p>
+        </div>
+        <div class="card">
+          <div class="kTitle" data-i18n="offer5_title">5) 技術型</div>
+          <p class="kText" data-i18n="offer5_text">AI 工具實戰：程式、圖像、工控、專案加速與落地方法。</p>
+        </div>
+        <div class="card">
+          <div class="kTitle" data-i18n="offer6_title">＋隱藏價值</div>
+          <p class="kText" data-i18n="offer6_text">安全感、結構化思維、陪跑式引導：讓你有方向，也有底氣。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section id="how">
+      <h2 class="sectionTitle" data-i18n="how_title">怎麼運作（MVP）</h2>
+      <div class="twoCol">
+        <div class="card">
+          <div class="kTitle" data-i18n="how_card1_title">流程</div>
+          <ol class="list" style="padding-left:20px;">
+            <li data-i18n="how_step1">留下 Email 與需求。</li>
+            <li data-i18n="how_step2">回覆可預約時段＋簡短前置問題。</li>
+            <li data-i18n="how_step3">Google Meet 線上聊（30–45 分）。</li>
+            <li data-i18n="how_step4">會後提供整理摘要與下一步（可選）。</li>
+          </ol>
+        </div>
+        <div class="card">
+          <div class="kTitle" data-i18n="how_card2_title">價格（初期試水溫）</div>
+          <p class="kText" data-i18n="how_price_desc">初期重點是驗證需求與建立信任，建議先用簡單低門檻方案：</p>
+          <ul class="list">
+            <li data-i18n="how_price1">15 分鐘簡短介紹：免費（名額制）</li>
+            <li data-i18n="how_price2">30 分鐘諮詢：NT$99–199（測轉換）</li>
+            <li data-i18n="how_price3">每週方案：NT$300–500</li>
+          </ul>
+          <p class="tiny" data-i18n="how_pay_note">付款 MVP：先匯款即可（未來再升級 Stripe / NewebPay）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAFETY -->
+    <section id="safety">
+      <h2 class="sectionTitle" data-i18n="safety_title">安全與邊界</h2>
+      <div class="card">
+        <div class="kTitle" data-i18n="safety_card_title">邊界清楚，這件事才會長久</div>
+        <ul class="list">
+          <li data-i18n="safety_li1">聚焦議題：職涯、學習策略、工程落地、AI 工具。</li>
+          <li data-i18n="safety_li2">尊重與安全：不騷擾、不強迫、不涉性暗示。</li>
+          <li data-i18n="safety_li3">隱私：只收集必要資訊（Email＋情境），不販售資料。</li>
+          <li data-i18n="safety_li4">若涉及危機（自傷、暴力、虐待），請立即尋求當地緊急與專業資源。</li>
+        </ul>
+        <p class="tiny" data-i18n="safety_disclaimer">
+          免責聲明：本服務為經驗分享與教育引導，不構成醫療/心理/法律專業服務。
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="sectionTitle" data-i18n="contact_title">開始（留下資訊）</h2>
+      <div class="card">
+        <p class="muted" style="margin-top:0;" data-i18n="contact_desc">
+          先收集需求（Lead）。後續會接後台：使用者建檔、狀態追蹤、備註、回訪排程。
+        </p>
+
+        <form id="leadForm">
+          <div class="formGrid">
+            <div>
+              <label for="name" data-i18n="f_name_label">稱呼（可選）</label>
+              <input id="name" name="name" placeholder="你的名字" autocomplete="name" data-i18n-placeholder="f_name_ph" />
+            </div>
+            <div>
+              <label for="email" data-i18n="f_email_label">Email *</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required data-i18n-placeholder="f_email_ph" />
+            </div>
+
+            <div>
+              <label for="topic" data-i18n="f_topic_label">想聊的主題 *</label>
+              <select id="topic" name="topic" required>
+                <option value="" selected disabled data-i18n="f_topic_opt0">請選擇</option>
+                <option data-i18n="f_topic_opt1">職涯方向</option>
+                <option data-i18n="f_topic_opt2">履歷 / 面試</option>
+                <option data-i18n="f_topic_opt3">學術研究 / 論文</option>
+                <option data-i18n="f_topic_opt4">工程 / 產品落地</option>
+                <option data-i18n="f_topic_opt5">AI 工具 / 生產力</option>
+                <option data-i18n="f_topic_opt6">其他</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="contactMethod" data-i18n="f_method_label">偏好聯絡方式</label>
+              <select id="contactMethod" name="contactMethod">
+                <option data-i18n="f_method_opt1">Email</option>
+                <option data-i18n="f_method_opt2">LINE</option>
+                <option data-i18n="f_method_opt3">Telegram</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <label for="message" data-i18n="f_msg_label">簡述情境（2–5 句）</label>
+            <textarea id="message" name="message" placeholder="例：我正在決定碩士畢業要進業界或申請博士…" data-i18n-placeholder="f_msg_ph"></textarea>
+          </div>
+
+          <div class="rowEnd">
+            <div class="tiny" data-i18n="f_agree">
+              送出代表你同意上述「安全邊界」與「免責聲明」。
+            </div>
+            <div style="display:flex; gap:10px;">
+              <button class="outlineBtn" type="reset" data-i18n="btn_clear">清除</button>
+              <button class="ctaBtn" type="submit" data-i18n="btn_submit">送出</button>
+            </div>
+          </div>
+        </form>
+
+        <footer>
+          <div><b style="color:var(--text);" data-i18n="footer_name">Project Senpai</b> <span data-i18n="footer_desc">— GitHub Pages MVP（低成本試水溫）</span></div>
+          <div style="margin-top:6px;">© <span id="y"></span> YC.</div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // ===== Smooth scroll =====
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // ===== Toast =====
+    const toast = document.getElementById("toast");
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 3800);
+    }
+
+    // ===== MVP form submit (demo) =====
+    const form = document.getElementById("leadForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      if(!email){
+        showToast(currentLang === "en" ? "Please enter your email." : "請輸入 Email。");
+        return;
+      }
+      showToast(currentLang === "en"
+        ? "✅ Submitted! (MVP demo) Next: connect to backend / email pipeline."
+        : "✅ 已送出！（MVP 示範）下一步：串接後台 / 收信流程。"
+      );
+      form.reset();
+    });
+
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // ===== i18n dictionary =====
+    const i18n = {
+      zh: {
+        brand: 'Project Senpai <span class="muted" style="font-weight:600;">| 安全型指導</span>',
+        nav_what: "是什麼",
+        nav_offer: "能提供什麼",
+        nav_how: "怎麼運作",
+        nav_safety: "安全邊界",
+        nav_contact: "開始",
+        nav_start_btn: "開始",
+
+        hero_title: "從校園出發，走向真實世界——<br/>一位安全、理性的「學長顧問」。",
+        hero_sub: "職涯方向、學術拆解、工程落地與 AI 工具使用——用清楚的邊界與可執行的策略，陪你把路走順。",
+        pill_1: "職涯發展",
+        pill_2: "學術研究教練",
+        pill_3: "工程落地視角",
+        pill_4: "AI 工具加速",
+        pill_5: "學術↔業界翻譯",
+        hero_cta: "留下 Email",
+        hero_more: "看看能提供什麼",
+        hero_note: "MVP 試水溫：零囤貨、零管銷壓力。有案就處理，沒案也不影響生活節奏。",
+
+        pos_label: "定位",
+        pos_text: "：安全型導師，不做曖昧服務。",
+        style_label: "風格",
+        style_text: "：條理、務實、尊重。",
+        focus_label: "聚焦",
+        focus_text: "：職涯與成長（小市場→高信任）。",
+        hero_right_reason: "<b style='color:var(--text);'>為什麼有效：</b>開放式對話能讓每次諮詢都不一樣；而清楚邊界，確保安全與專業。",
+
+        quick_links: "快速連結（之後再補）",
+        quick_links_desc: "LINE / Telegram / Email / Google Meet 預約連結",
+        ql_booking: "預約：",
+        ql_contact: "聯絡：",
+        ql_social: "社群：",
+
+        what_title: "這是什麼",
+        what_card1_title: "真實世界的指導服務",
+        what_card1_text: "先從校園開始累積信任與案例，再逐步走到校園外；用可複用的方法論與紀錄，做長線影響力。",
+        what_li1: "低成本、低風險、高學習",
+        what_li2: "用小勝利與回饋累積威望值",
+        what_li3: "把經驗變成可複製的框架",
+        what_card2_title: "不是取代專業人士",
+        what_card2_text: "本服務以經驗分享、教育引導、策略拆解為主。若涉及醫療/心理/法律等高風險議題，請尋求專業資源。",
+        what_li4: "不做診斷或治療",
+        what_li5: "不做法律意見",
+        what_li6: "不做戀愛/性暗示服務",
+
+        offer_title: "我能提供什麼（我們有哪些料）",
+        offer1_title: "1) 學術型",
+        offer1_text: "AI 學術拆解、論文選題、研究價值判斷，特別適合碩士生。",
+        offer2_title: "2) 工程型",
+        offer2_text: "業界實戰視角：產品落地、MP 思維、現場排查與交付。",
+        offer3_title: "3) 橋梁型",
+        offer3_text: "整合學術腦與工程腦：把兩種語言互相翻譯，降低溝通成本。",
+        offer4_title: "4) 顧問型",
+        offer4_text: "職涯與工作發展：靠經驗累積的判斷，幫你少走彎路。",
+        offer5_title: "5) 技術型",
+        offer5_text: "AI 工具實戰：程式、圖像、工控、專案加速與落地方法。",
+        offer6_title: "＋隱藏價值",
+        offer6_text: "安全感、結構化思維、陪跑式引導：讓你有方向，也有底氣。",
+
+        how_title: "怎麼運作（MVP）",
+        how_card1_title: "流程",
+        how_step1: "留下 Email 與需求。",
+        how_step2: "回覆可預約時段＋簡短前置問題。",
+        how_step3: "Google Meet 線上聊（30–45 分）。",
+        how_step4: "會後提供整理摘要與下一步（可選）。",
+        how_card2_title: "價格（初期試水溫）",
+        how_price_desc: "初期重點是驗證需求與建立信任，建議先用簡單低門檻方案：",
+        how_price1: "15 分鐘簡短介紹：免費（名額制）",
+        how_price2: "30 分鐘諮詢：NT$99–199（測轉換）",
+        how_price3: "每週方案：NT$300–500",
+        how_pay_note: "付款 MVP：先匯款即可（未來再升級 Stripe / NewebPay）。",
+
+        safety_title: "安全與邊界",
+        safety_card_title: "邊界清楚，這件事才會長久",
+        safety_li1: "聚焦議題：職涯、學習策略、工程落地、AI 工具。",
+        safety_li2: "尊重與安全：不騷擾、不強迫、不涉性暗示。",
+        safety_li3: "隱私：只收集必要資訊（Email＋情境），不販售資料。",
+        safety_li4: "若涉及危機（自傷、暴力、虐待），請立即尋求當地緊急與專業資源。",
+        safety_disclaimer: "免責聲明：本服務為經驗分享與教育引導，不構成醫療/心理/法律專業服務。",
+
+        contact_title: "開始（留下資訊）",
+        contact_desc: "先收集需求（Lead）。後續會接後台：使用者建檔、狀態追蹤、備註、回訪排程。",
+        f_name_label: "稱呼（可選）",
+        f_name_ph: "你的名字",
+        f_email_label: "Email *",
+        f_email_ph: "you@example.com",
+        f_topic_label: "想聊的主題 *",
+        f_topic_opt0: "請選擇",
+        f_topic_opt1: "職涯方向",
+        f_topic_opt2: "履歷 / 面試",
+        f_topic_opt3: "學術研究 / 論文",
+        f_topic_opt4: "工程 / 產品落地",
+        f_topic_opt5: "AI 工具 / 生產力",
+        f_topic_opt6: "其他",
+        f_method_label: "偏好聯絡方式",
+        f_method_opt1: "Email",
+        f_method_opt2: "LINE",
+        f_method_opt3: "Telegram",
+        f_msg_label: "簡述情境（2–5 句）",
+        f_msg_ph: "例：我正在決定碩士畢業要進業界或申請博士…",
+        f_agree: "送出代表你同意上述「安全邊界」與「免責聲明」。",
+        btn_clear: "清除",
+        btn_submit: "送出",
+
+        footer_name: "Project Senpai",
+        footer_desc: "— GitHub Pages MVP（低成本試水溫）",
+      },
+
+      en: {
+        brand: 'Project Senpai <span class="muted" style="font-weight:600;">| Safe Guidance</span>',
+        nav_what: "What",
+        nav_offer: "Offer",
+        nav_how: "How",
+        nav_safety: "Safety",
+        nav_contact: "Start",
+        nav_start_btn: "Start",
+
+        hero_title: "From campus to real life—<br/>a safe, practical “senpai” you can talk to.",
+        hero_sub: "Career direction, academic breakdown, engineering reality checks, and AI tool coaching—delivered with clear boundaries and actionable steps.",
+        pill_1: "Career guidance",
+        pill_2: "Academic coaching",
+        pill_3: "Engineering reality checks",
+        pill_4: "AI productivity",
+        pill_5: "Bridge: academia ↔ industry",
+        hero_cta: "Leave your email",
+        hero_more: "See what I offer",
+        hero_note: "MVP testing: no inventory, no overhead. Handle cases when they come; otherwise zero pressure.",
+
+        pos_label: "Positioning",
+        pos_text: ": safe mentor, not dating.",
+        style_label: "Style",
+        style_text: ": structured, practical, respectful.",
+        focus_label: "Focus",
+        focus_text: ": career & growth (small market → high trust).",
+        hero_right_reason: "<b style='color:var(--text);'>Why it works:</b> open-ended conversation keeps sessions unique, while boundaries keep it safe and professional.",
+
+        quick_links: "Quick links (edit later)",
+        quick_links_desc: "LINE / Telegram / Email / Google Meet booking link",
+        ql_booking: "Booking: ",
+        ql_contact: "Contact: ",
+        ql_social: "Social: ",
+
+        what_title: "What this is",
+        what_card1_title: "A real-world guidance service",
+        what_card1_text: "Start from campus to build trust and cases, then expand beyond campus with repeatable frameworks and documentation.",
+        what_li1: "Low cost, low risk, high learning",
+        what_li2: "Build credibility via small wins & feedback",
+        what_li3: "Turn experience into reusable frameworks",
+        what_card2_title: "Not a replacement for professionals",
+        what_card2_text: "This is experience-based guidance and educational support. For legal/medical/clinical needs, please seek licensed professionals.",
+        what_li4: "No diagnosis or treatment",
+        what_li5: "No legal advice",
+        what_li6: "No romantic/sexual services",
+
+        offer_title: "What I can offer (our materials)",
+        offer1_title: "1) Academic",
+        offer1_text: "AI-assisted research breakdown, thesis direction, and “what’s valuable” in academic work.",
+        offer2_title: "2) Engineering",
+        offer2_text: "Industry delivery view: MP mindset, debugging reality, practical execution guidance.",
+        offer3_title: "3) Bridge",
+        offer3_text: "Translate between academic and engineering language to reduce communication cost.",
+        offer4_title: "4) Career consulting",
+        offer4_text: "Career strategy and decision support based on real experience.",
+        offer5_title: "5) Technical coaching",
+        offer5_text: "AI tools in practice: code, images, industrial control, project acceleration.",
+        offer6_title: "+ Hidden value",
+        offer6_text: "A safe presence + structured thinking + guidance that builds confidence over time.",
+
+        how_title: "How it works (MVP)",
+        how_card1_title: "Steps",
+        how_step1: "Leave your email and your need.",
+        how_step2: "I reply with time slots + a short pre-question list.",
+        how_step3: "Talk on Google Meet (30–45 min).",
+        how_step4: "Optional: summary + next steps after the session.",
+        how_card2_title: "Pricing (early testing)",
+        how_price_desc: "Early stage focuses on trust and validation. Suggested simple plans:",
+        how_price1: "15-min intro: free (limited slots)",
+        how_price2: "30-min session: NT$99–199 (test conversion)",
+        how_price3: "Weekly plan: NT$300–500",
+        how_pay_note: "Payment MVP: bank transfer. (Upgrade later to Stripe/NewebPay.)",
+
+        safety_title: "Safety & boundaries",
+        safety_card_title: "Clear boundaries keep this healthy",
+        safety_li1: "Focus topics: career, learning, engineering delivery, AI tools.",
+        safety_li2: "Respect and safety: no harassment, coercion, or sexual content.",
+        safety_li3: "Privacy: collect only necessary info (email + context). No selling data.",
+        safety_li4: "If urgent danger (self-harm/violence/abuse), contact local emergency services.",
+        safety_disclaimer: "Disclaimer: educational guidance only; not medical/legal/clinical service.",
+
+        contact_title: "Start (leave your info)",
+        contact_desc: "Collect leads first. Later we’ll add a backend: user records, status tracking, notes, and follow-ups.",
+        f_name_label: "Name (optional)",
+        f_name_ph: "Your name",
+        f_email_label: "Email *",
+        f_email_ph: "you@example.com",
+        f_topic_label: "Topic *",
+        f_topic_opt0: "Select one",
+        f_topic_opt1: "Career direction",
+        f_topic_opt2: "Resume / interview",
+        f_topic_opt3: "Academic research / thesis",
+        f_topic_opt4: "Engineering / delivery",
+        f_topic_opt5: "AI tools / productivity",
+        f_topic_opt6: "Other",
+        f_method_label: "Preferred contact",
+        f_method_opt1: "Email",
+        f_method_opt2: "LINE",
+        f_method_opt3: "Telegram",
+        f_msg_label: "Your situation (2–5 sentences)",
+        f_msg_ph: "Example: I’m deciding between industry vs PhD after my master’s…",
+        f_agree: "Submitting means you accept the boundaries and disclaimer above.",
+        btn_clear: "Clear",
+        btn_submit: "Submit",
+
+        footer_name: "Project Senpai",
+        footer_desc: "— GitHub Pages MVP (low-cost validation)",
+      }
+    };
+
+    // ===== Apply i18n =====
+    let currentLang = "zh";
+
+    function setLang(lang){
+      currentLang = lang;
+      localStorage.setItem("lang", lang);
+
+      // update html lang attr
+      document.documentElement.lang = (lang === "en") ? "en" : "zh-Hant";
+
+      // button states
+      document.getElementById("btnZh").classList.toggle("active", lang === "zh");
+      document.getElementById("btnEn").classList.toggle("active", lang === "en");
+
+      // replace text/html
+      const dict = i18n[lang];
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if(dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+
+      // placeholders
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if(dict[key] !== undefined) el.setAttribute("placeholder", dict[key]);
+      });
+
+      // title
+      document.title = (lang === "en")
+        ? "Project Senpai | Safe Career Guidance"
+        : "Project Senpai｜出租學長（安全型職涯顧問）";
+    }
+
+    // init
+    const saved = localStorage.getItem("lang");
+    setLang(saved === "en" ? "en" : "zh");
+
+    document.getElementById("btnZh").addEventListener("click", () => setLang("zh"));
+    document.getElementById("btnEn").addEventListener("click", () => setLang("en"));
+  </script>
+</body>
+</html>
